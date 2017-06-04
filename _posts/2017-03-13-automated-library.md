@@ -22,7 +22,7 @@ Automated library is web app to catalogue books and efficiently displays its det
 Currently installed in **Prayas**, a student endeavour to teach marginalized kids and **Gymkhana library**.
 
 [Github Repo](https://github.com/R-Wolf/CFD_A_library)
-![Laptop]({{ site.url }}/images/bookclub.png)
+![Automated Library]({{ site.url }}/images/bookclub.png)
 
 
 

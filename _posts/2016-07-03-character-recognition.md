@@ -14,3 +14,5 @@ project: true
 ---
 
 Programming Club Project in which we recognise characters using *Machine Learning*.
+[Github Repo](https://github.com/Sshanu/ml_HR)
+![Neural Network]({{ site.url }}/images/net.jpg)
