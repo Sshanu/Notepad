@@ -1,0 +1,20 @@
+---
+layout: page
+permalink: /projects/
+title: Projects
+description: "Projects done by Shanu"
+---
+{% assign projectcount = '0' %}
+<ul class="post-list">
+{% for post in site.posts %}
+{% if post.project %}
+{% assign projectcount = projectcount | plus:'1' %}
+  <li><article><i class="fa fa-star-half-o"></i> <a href="{{ site.url }}{{ post.url }}">{{ post.title }} <span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></span></a></article></li>
+{% endif %}
+{% endfor %}
+</ul>
+{% if projectcount == '0' %}
+<div class="notepad-page-title row">
+    <h1>No posts has been project yet</h1>
+</div>
+{% endif %}

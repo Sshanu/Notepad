@@ -1,34 +1,35 @@
-title:            Notepad
-description:      "Blogging is fun"
-logo:             logo.png
-disqus_shortname: hmfaysal
+
+title:            Shanu Kumar
+description:      "Coding is fun"
+# logo:             logo.png
+disqus_shortname: shanu
 share:            true
 dropcap:			true
 # Change url to your domain. Leave localhost server or blank when working locally.
-# or use the hint from http://jekyllrb.com/docs/github-pages/ to keep this the same 
+# or use the hint from https://jekyllrb.com/docs/github-pages/ to keep this the same 
 # whether working locally or remotely. Start Jekyll with: jekyll serve --baseurl ''
 url:        	  /Notepad
 
 # Owner/author information
 owner:
-  name:           Hossain Mohd Faysal
-  avatar:         hmfaysal.jpg
-  email:          hmfaysal@alum.mit.edu
-  # Use the coder's toolbox at http://coderstoolbox.net/string/#!encoding=xml&action=encode&charset=us_ascii to encode your description into XML string
-  description:    Awesome Dude, Awesome Life
+  name:           Shanu Kumar
+  avatar:         shanu.jpg
+  email:          sshanukr@gmail.com
+  # Use the coder's toolbox at https://coderstoolbox.net/string/#!encoding=xml&action=encode&charset=us_ascii to encode your description into XML string
+  description:    
   # Social networking links used in footer. Update and remove as you like.
-  twitter:        hmfaysal
-  facebook:       hmfaysal
-  github:         hmfaysal      
-  instagram:      hmfaysal
+  # twitter:        hmfaysal
+  facebook:       Shanu1207
+  github:         Sshanu      
+  # instagram:      hmfaysal
   # For Google Authorship https://plus.google.com/authorship
-  google_plus:    https://plus.google.com/u/0/102602916593522619858
+  google_plus:    https://plus.google.com/u/0/114345659651671811612
 
 # Analytics and webmaster tools stuff goes here
-google_analytics:   UA-39365944-7
-google_verify:      
+# google_analytics:   UA-39365944-7
+# google_verify:      
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:         
+# bing_verify:         
 
 # Links to include in footer navigation
 # For external links add external: true
@@ -37,15 +38,20 @@ links:
     url: /
     external: false
     icon: home
-  - title: Featured Posts
-    url: /featured
+  - title: Blogs
+    url: /blogs
+  - title: Projects
+    url: /projects
   - title: Categories
     url: /categories
   - title: About
     url: /about
+  - title: Resume
+    url: /resume.pdf
 
-# http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-timezone:    Asia/Dhaka
+
+# https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone:    Asia/India
 future:      true
 highlighter: pygments
 markdown:    kramdown
@@ -60,7 +66,7 @@ kramdown:
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
-  use_coderay: false
+  enable_coderay: false
 
   coderay:
     coderay_line_numbers: 
@@ -71,8 +77,8 @@ kramdown:
 
 prose:
   rooturl: '_posts'
-  siteurl: 'http://hmfaysal.github.io/Notepad/'
-  relativeLinks: 'http://hmfaysal.github.io/Notepad/links.jsonp'
+  siteurl: 'https://sshanu.github.io/Notepad'
+  relativeLinks: 'https://sshanu.github.io/Notepad/links.jsonp'
   media: 'images'
   metadata:
     _posts:
@@ -125,6 +131,8 @@ prose:
               value: interesting
             - name: "Web-Development"
               value: webdevelopment
+            - name: "Projects"
+              value: project
           alterable: true
       - name: "tags"
         field:
@@ -141,10 +149,16 @@ prose:
           element: "checkbox"
           label: "MathJax"
           value: false
-      - name: "featured"
+      - name: "project"
         field:
           element: "checkbox"
-          label: "Featured?"
+          label: "Project?"
+          value: false
+      - name: "comments"
+      - name: "blog"
+        field:
+          element: "checkbox"
+          label: "Blog?"
           value: false
       - name: "comments"
         field:
@@ -155,3 +169,6 @@ prose:
 
 include: [".htaccess"]
 exclude: ["lib", "config.rb", "Gemfile", "Capfile", "Gemfile.lock", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]
+
+# Gems
+gems: [jekyll-paginate]
