@@ -14,10 +14,10 @@ Word embedding is a vector representations of words.
 
 In this post we are using [GloVe](https://nlp.stanford.edu/projects/glove/) as pretrained embedding for builing vocabulary of words.
 
-For generating a **headline** from a news article, first words have to be tokenized from embedding matrix.
+For generating a ``headline`` from a news article, first words have to be tokenized from embedding matrix.
 Dataset will consists of headlines and descriptions of news. [Signal media dataset](http://research.signalmedia.co/newsir16/signal-dataset.html) and [BBC dataset](http://mlg.ucd.ie/datasets/bbc.html) are good.
 
-Once dataset is downloaded, save it in a python pickle file as a tuple of **head** and **desc** where head is headline and desc is description of news.
+Once dataset is downloaded, save it in a python pickle file as a tuple of ``head`` and ``desc`` where head is headline and desc is description of news.
 
 Load the dataset
 {% highlight python linenos %}
@@ -31,7 +31,7 @@ desc = [d.lower() for d in desc]
 {% endhighlight %}
 
 For building the vocabulary first we count the words and then sort it.
-**vocab** consists of all the different words in descending order of their count.
+``vocab`` consists of all the different words in descending order of their count.
 {% highlight python linenos %}
 from collections import Counter
 from itertools import chain
@@ -76,9 +76,9 @@ idx2word = dict((idx,word) for word,idx in word2idx.items())
 {% endhighlight %}
 
 Download the [Glove Embedding](http://nlp.stanford.edu/data/glove.6B.zip) then read it.
-* **glove_n_symbols** is number of different symbols or words.
-* **glove_embedding_weights** is the glove embedding matrix.
-* **glove_index_dict** indexes words to vectors.
+* ``glove_n_symbols`` is number of different symbols or words.
+* ``glove_embedding_weights`` is the glove embedding matrix.
+* ``glove_index_dict`` indexes words to vectors.
 {% highlight python linenos %}
 import os
 import numpy as np
@@ -101,7 +101,7 @@ with open(glove_name, 'r') as f:
         i += 1
 {% endhighlight %}
 
-Lower casing the words and then indexing them to **glove_index_dict**.
+Lower casing the words and then indexing them to ``glove_index_dict``.
 {% highlight python linenos %}
 for w, i in glove_index_dict.items():
     w = w.lower()
@@ -134,7 +134,7 @@ for i in range(vocab_size):
         c+=1
 {% endhighlight %}
 
-**word2glove** is collection of all the words in the glove vocabulary.
+``word2glove`` is collection of all the words in the glove vocabulary.
 {% highlight python linenos %}
 word2glove = {}
 for w in word2idx:
@@ -149,7 +149,7 @@ for w in word2idx:
 
 Lots of word in the full vocabulary (word2idx) are outside vocab_size.
 Build an alterantive which will map them to their closest match in glove but only if the match is good enough.
-First normalize the embedding and choose **nb_unkown_words** as they are the last words inside the embedding matrix which are considered to be outisde.
+First normalize the embedding and choose ``nb_unkown_words`` as they are the last words inside the embedding matrix which are considered to be outisde.
 {% highlight python linenos %}
 
 glove_thr = 0.5 # used to compare the closeness
@@ -179,7 +179,7 @@ for w, idx in word2idx.items():
 glove_match.sort(key = lambda x: -x[2])
 {% endhighlight %}
 
-**glove_idx2idx** is a lookup table of index of outside words to index of inside words.
+``glove_idx2idx`` is a lookup table of index of outside words to index of inside words.
 {% highlight python linenos %}
 glove_idx2idx = dict((word2idx[w], embedding_idx) for w, embedding_idx, _ in glove_match)
 {% endhighlight %}
