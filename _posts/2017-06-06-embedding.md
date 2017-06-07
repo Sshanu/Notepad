@@ -20,7 +20,7 @@ Dataset will consists of headlines and descriptions of news. [Signal media datas
 Once dataset is downloaded, save it in a python pickle file as a tuple of **head** and **desc** where head is headline and desc is description of news.
 
 Load the dataset
-{% highlight python %}
+{% highlight python linenos %}
 import _pickle as cPickle
 f = open('data.pkl', 'rb')
 head, desc = cPickle.load(f)
@@ -32,7 +32,7 @@ desc = [d.lower() for d in desc]
 
 For building the vocabulary first we count the words and then sort it.
 **vocab** consists of all the different words in descending order of their count.
-{% highlight python %}
+{% highlight python linenos %}
 from collections import Counter
 from itertools import chain
 lst= head + desc
@@ -41,7 +41,7 @@ vocab = list(map(lambda x:x[0], sorted(vocabcount.items(), key=lambda x: -x[1]))
 {% endhighlight %}
 
 Word distribution in headlines and description
-{% highlight python %}
+{% highlight python linenos %}
 import matplotlib.pyplot as plt
 %matplotlib inline
 # log scale and 'clip' will map all negative values a very small positive one
@@ -56,7 +56,7 @@ plt.ylabel('total appearances');
 
 Vocab size is 40000 and embedding dimension is 100.
 End of sentence and words which are out of vocab are indexed 1 and 0 respectively.
-{% highlight python %}
+{% highlight python linenos %}
 vocab_size = 40000
 embedding_dim = 100
 
@@ -66,7 +66,7 @@ start_idx = eos+1 # index of first real word
 {% endhighlight %}
 
 Indexing words to vectors and vectors to words.
-{% highlight python %}
+{% highlight python linenos %}
 # Word to Vector
 word2idx = dict((word, idx+start_idx) for idx,word in enumerate(vocab))
 word2idx['<empty>'] = empty
@@ -79,7 +79,7 @@ Download the [Glove Embedding](http://nlp.stanford.edu/data/glove.6B.zip) then r
 * **glove_n_symbols** is number of different symbols or words.
 * **glove_embedding_weights** is the glove embedding matrix.
 * **glove_index_dict** indexes words to vectors.
-{% highlight python %}
+{% highlight python linenos %}
 import os
 import numpy as np
 
@@ -102,7 +102,7 @@ with open(glove_name, 'r') as f:
 {% endhighlight %}
 
 Lower casing the words and then indexing them to **glove_index_dict**.
-{% highlight python %}
+{% highlight python linenos %}
 for w, i in glove_index_dict.items():
     w = w.lower()
     if w not in glove_index_dict:
@@ -110,7 +110,7 @@ for w, i in glove_index_dict.items():
 {% endhighlight %}
 
 Generating a random embedding with same scale as glove
-{% highlight python %}
+{% highlight python linenos %}
 seed = 42
 np.random.seed(seed)
 shape = (vocab_size, embedding_dim)
@@ -119,7 +119,7 @@ embedding = np.random.uniform(low=-scale, high=scale, size=shape)
 {% endhighlight %}
 
 Initializing the embedding matrix using Glove embedding matrix.
-{% highlight python %}
+{% highlight python linenos %}
 c = 0
 x = 0
 for i in range(vocab_size):
@@ -135,7 +135,7 @@ for i in range(vocab_size):
 {% endhighlight %}
 
 **word2glove** is collection of all the words in the glove vocabulary.
-{% highlight python %}
+{% highlight python linenos %}
 word2glove = {}
 for w in word2idx:
     if w in glove_index_dict:
@@ -150,7 +150,7 @@ for w in word2idx:
 Lots of word in the full vocabulary (word2idx) are outside vocab_size.
 Build an alterantive which will map them to their closest match in glove but only if the match is good enough.
 First normalize the embedding and choose **nb_unkown_words** as they are the last words inside the embedding matrix which are considered to be outisde.
-{% highlight python %}
+{% highlight python linenos %}
 
 glove_thr = 0.5 # used to compare the closeness
 # Normalizing the embedding matrix 
@@ -180,18 +180,18 @@ glove_match.sort(key = lambda x: -x[2])
 {% endhighlight %}
 
 **glove_idx2idx** is a lookup table of index of outside words to index of inside words.
-{% highlight python %}
+{% highlight python linenos %}
 glove_idx2idx = dict((word2idx[w], embedding_idx) for w, embedding_idx, _ in glove_match)
 {% endhighlight %}
 
 Then vectorize the headlines and descriptions.
-{% highlight python %}
+{% highlight python linenos %}
 Y = [[word2idx[token] for token in headline.split()] for headline in head]
 X = [[word2idx[token] for token in d.split()] for d in desc]
 {% endhighlight %}
 
 Visualize X and Y 
-{% highlight python %}
+{% highlight python linenos %}
 plt.hist(list(map(len,Y)),bins=50);
 plt.hist(list(map(len,X)),bins=50);
 {% endhighlight %}
@@ -215,7 +215,7 @@ plt.hist(list(map(len,X)),bins=50);
 
 
 Save the embedding and data(X,Y) as a pkl files
-{% highlight python %}
+{% highlight python linenos %}
 with open('vocab-embedding.pkl', 'wb') as f:
     cPickle.dump((embedding, idx2word, word2idx, glove_idx2idx), f, -1)
 with open('vocab-embedding.data.pkl', 'wb') as f:
