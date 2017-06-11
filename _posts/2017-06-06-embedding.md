@@ -3,8 +3,8 @@ layout: post
 title: "Word Embedding"
 description: 
 headline: 
-modified: 2017-03-13
-category: nlp
+modified: 2017-06-06
+category: Natural Language Processing
 tags: []
 comments: true
 blog: true

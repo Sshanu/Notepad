@@ -4,7 +4,7 @@ title: "Character Recognition"
 description: 
 headline: 
 modified: 2016-07-03
-category: Machine Learninig
+category: Deep Learning
 tags: [project, machine, learning,]
 imagefeature: 
 mathjax: 
